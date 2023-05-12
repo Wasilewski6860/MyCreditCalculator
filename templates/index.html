@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Кредитый Калькулятор</title>
+</head>
+<body>
+
+<h1 >Кредитный калькулятор</h1>
+
+<div class="input_background">
+    <form method="post" spellcheck="false">
+            <h2>Сумма</h2>
+            <div style=""><textarea  cols="20" rows="1" class="input_field" name="sum" >{{ params.sum}}</textarea></div>
+            <h2>Процент</h2>
+            <div style=""><textarea  cols="20" rows="1" class="input_field" name="procent" >{{ params.procent}}</textarea></div>
+            <h2>Срок</h2>
+            <div style=""><textarea  cols="20" rows="1" class="input_field" name="term" >{{ params.term}}</textarea></div>
+            <input type="checkbox" style="margin-top:5%;font-weight: 700;" name="is_annuity"> Аннуитетный? </input>
+            <h2><button style="font-weight: 700;" type="submit" >Check </button></h2>
+
+    </form>
+</div>
+
+<table class = "table">
+    <thead>
+        <tr class="table_head">
+            <td>{{ "Месяц" }}</td>
+            <td>{{ "Платеж" }}</td>
+            <td>{{ "Остаток" }}</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in range(payment_schedule["Месяц"][-1]) %}
+            <tr>
+                <td>{{ payment_schedule["Месяц"][i] }}</td>
+                <td>{{ payment_schedule["Платеж"][i] }}</td>
+                <td>{{ payment_schedule["Остаток"][i] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="table_head" >Всего выплат: {{payment_schedule['Всего выплат']}},   Переплата: {{payment_schedule['Переплата']}}</div>
+
+</body>
+</html>
